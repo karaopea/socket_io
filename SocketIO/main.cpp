@@ -132,7 +132,13 @@ bool AbnormalJsonData(string jsonFormat, bool verbose)
 	Json::Value jsonData;
 	Json::Reader jsonReader;
 
-	if (jsonReader.parse(jsonFormat.c_str(), jsonData))
+	//jsonReader.parse(jsonFormat.c_str(), jsonData)
+	JSONCPP_STRING err;
+	Json::CharReaderBuilder builder;
+	const std::unique_ptr<Json::CharReader> reader(builder.newCharReader());
+	reader->parse(jsonFormat.c_str(), jsonFormat.c_str() + jsonFormat.length(), &jsonData, &err);
+
+	if (jsonData.isNull() == false)
 	{
 		const Json::Value objects = jsonData;
 		printf("%s\n",objects["cam_idx"].asString().c_str());
