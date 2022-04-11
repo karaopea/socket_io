@@ -130,7 +130,7 @@ static DWORD WINAPI startClient(LPVOID parameter)
 bool AbnormalJsonData(string jsonFormat, bool verbose)
 {
 	Json::Value jsonData;
-	Json::Reader jsonReader;
+	//Json::Reader jsonReader;
 
 	//jsonReader.parse(jsonFormat.c_str(), jsonData)
 	JSONCPP_STRING err;
